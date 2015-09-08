@@ -2,7 +2,6 @@ package main
 
 import (
 	"bufio"
-	"fmt"
 	"github.com/codegangsta/cli"
 	"os"
 	"path/filepath"
@@ -61,14 +60,9 @@ func process(file string, c *cli.Context) bool {
 	for scanner.Scan() {
 
 		line := scanner.Text()
+		cols := re.FindStringSubmatch(line)
+		println("URL: ", cols[15], "took: ", cols[7], cols[8], cols[9])
 
-		println(line)
-
-		cols := re.Split(line, -1)
-		fmt.Printf("%v", cols)
-		println("")
-		println("Line 1 ended.")
-		os.Exit(2)
 	}
 
 	return true
